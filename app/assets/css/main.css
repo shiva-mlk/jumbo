@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+/**
+ * Jumbo brand tokens. Sourced from jumbo.com's public styling; the yellow is
+ * the primary brand colour and black is used for text and the wordmark.
+ */
+@theme {
+  --color-jumbo-yellow: #eeb717;
+  --color-jumbo-yellow-dark: #d9a512;
+  --color-jumbo-black: #1a1a1a;
+  --color-jumbo-grey: #767676;
+  --color-jumbo-grey-light: #f2f2f2;
+  --color-jumbo-green: #128a42;
+  --color-jumbo-red: #c40000;
+
+  --font-sans: "Jumbo Sans", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --radius-card: 0.5rem;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background-color: white;
+  color: var(--color-jumbo-black);
+}
+
+/* A single, consistently visible focus ring for keyboard users. */
+:focus-visible {
+  outline: 3px solid var(--color-jumbo-black);
+  outline-offset: 2px;
+}
