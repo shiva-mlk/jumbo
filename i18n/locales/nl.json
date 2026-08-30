@@ -11,6 +11,31 @@
   },
   "stores": {
     "title": "Winkels",
-    "placeholder": "Het winkeloverzicht komt hier."
+    "loading": "Winkels laden",
+    "count": "Geen winkels gevonden | 1 winkel | {count} winkels",
+    "empty": "Geen winkels gevonden voor je zoekopdracht.",
+    "errorTitle": "Er ging iets mis",
+    "errorBody": "De winkels konden niet worden geladen."
+  },
+  "common": {
+    "retry": "Opnieuw proberen",
+    "opensInNewTab": "(opent in een nieuw tabblad)"
+  },
+  "store": {
+    "visitWebsite": "Bekijk website"
+  },
+  "status": {
+    "open": "Open",
+    "openUntil": "Open tot {time}",
+    "closed": "Gesloten",
+    "closedOpensToday": "Gesloten — opent vandaag om {time}",
+    "closedOpensTomorrow": "Gesloten — opent morgen om {time}",
+    "closedOpensOn": "Gesloten — opent {day} om {time}"
+  },
+  "pagination": {
+    "label": "Paginering",
+    "previous": "Vorige pagina",
+    "next": "Volgende pagina",
+    "goToPage": "Ga naar pagina {page}"
   }
 }

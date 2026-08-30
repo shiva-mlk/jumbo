@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/eslint', '@nuxtjs/i18n'],
+  modules: ['@nuxt/eslint', '@nuxtjs/i18n', '@nuxt/icon'],
   i18n: {
     baseUrl: process.env.NUXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
     defaultLocale: 'en',
@@ -14,6 +14,10 @@ export default defineNuxtConfig({
       { code: 'nl', language: 'nl-NL', name: 'Nederlands', file: 'nl.json' }
     ],
     detectBrowserLanguage: false
+  },
+  icon: {
+    mode: 'svg',
+    serverBundle: { collections: ['lucide'] }
   },
   css: ['~/assets/css/main.css'],
   vite: {

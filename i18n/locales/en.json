@@ -11,6 +11,31 @@
   },
   "stores": {
     "title": "Stores",
-    "placeholder": "The store overview goes here."
+    "loading": "Loading stores",
+    "count": "No stores found | 1 store | {count} stores",
+    "empty": "No stores match your search.",
+    "errorTitle": "Something went wrong",
+    "errorBody": "The stores could not be loaded."
+  },
+  "common": {
+    "retry": "Try again",
+    "opensInNewTab": "(opens in a new tab)"
+  },
+  "store": {
+    "visitWebsite": "Visit website"
+  },
+  "status": {
+    "open": "Open",
+    "openUntil": "Open until {time}",
+    "closed": "Closed",
+    "closedOpensToday": "Closed — opens today at {time}",
+    "closedOpensTomorrow": "Closed — opens tomorrow at {time}",
+    "closedOpensOn": "Closed — opens {day} at {time}"
+  },
+  "pagination": {
+    "label": "Pagination",
+    "previous": "Previous page",
+    "next": "Next page",
+    "goToPage": "Go to page {page}"
   }
 }

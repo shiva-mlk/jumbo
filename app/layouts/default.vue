@@ -34,7 +34,7 @@ const localePath = useLocalePath()
       <slot />
     </main>
 
-    <footer class="border-t border-jumbo-grey-light bg-jumbo-grey-light">
+    <footer class="border-t border-jumbo-border bg-jumbo-grey-light">
       <div class="mx-auto max-w-6xl px-4 py-6 text-sm text-jumbo-grey">
         {{ t('app.footer') }}
       </div>
