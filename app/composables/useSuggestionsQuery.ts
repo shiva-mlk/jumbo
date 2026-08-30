@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/vue-query'
+import { keepPreviousData, useQuery } from '@tanstack/vue-query'
 
 export interface Suggestion {
   value: string
@@ -27,6 +27,7 @@ export function useSuggestionsQuery(query: Ref<string>, limit: number = 8) {
         limit
       }).then((data) => data.suggestions),
     enabled,
+    placeholderData: keepPreviousData,
     staleTime: 60 * 1000
   })
 }

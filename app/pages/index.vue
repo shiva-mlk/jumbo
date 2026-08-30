@@ -16,7 +16,9 @@ const page = computed({
 const searchInput = ref((route.query.q as string) ?? '')
 const query = useDebouncedRef(searchInput, 500)
 
-const { data: suggestions, isFetching: isLoadingSuggestions } = useSuggestionsQuery(query)
+const { data: suggestionData, isFetching: isLoadingSuggestions } = useSuggestionsQuery(query)
+
+const suggestions = computed(() => suggestionData.value ?? [])
 
 watch(query, (value) => {
   router.replace({ query: { ...route.query, q: value || undefined, page: undefined } })
@@ -48,7 +50,7 @@ function onPageChange(next: number) {
     <SearchCombobox
       v-model="searchInput"
       class="mt-4 max-w-xl"
-      :suggestions="suggestions ?? []"
+      :suggestions="suggestions"
       :loading="isLoadingSuggestions"
       @submit="onSearchSubmit"
     />
