@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { StoreListItem } from '~/composables/useStoresQuery'
+import type { StoreListItem } from '@/composables/useStoresQuery'
 
 defineProps<{
   store: StoreListItem

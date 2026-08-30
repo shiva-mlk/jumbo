@@ -20,9 +20,9 @@ export default defineNuxtConfig({
     serverBundle: { collections: ['lucide'] }
   },
   components: [
-    { path: '~/components', pathPrefix: false }
+    { path: '@/components', pathPrefix: false }
   ],
-  css: ['~/assets/css/main.css'],
+  css: ['@/assets/css/main.css'],
   vite: {
     plugins: [tailwindcss()]
   },

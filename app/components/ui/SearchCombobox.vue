@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, toRef, type LiHTMLAttributes } from 'vue'
-import type { Suggestion } from '~/composables/useSuggestionsQuery'
-import { useCombobox } from '~/composables/useCombobox'
+import type { Suggestion } from '@/composables/useSuggestionsQuery'
+import { useCombobox } from '@/composables/useCombobox'
 
 const props = withDefaults(
   defineProps<{
