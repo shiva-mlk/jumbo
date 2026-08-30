@@ -89,16 +89,15 @@ function onPageChange(next: number) {
       <StoreGrid
         class="mt-4"
         :class="{ 'opacity-60': isPlaceholderData }"
+        :items="data.items"
+        :item-key="(store) => store.id"
       >
-        <li
-          v-for="store in data.items"
-          :key="store.id"
-        >
+        <template #default="{ item }">
           <StoreCard
-            :store="store"
+            :store="item"
             :now="now"
           />
-        </li>
+        </template>
       </StoreGrid>
 
       <PaginationControls

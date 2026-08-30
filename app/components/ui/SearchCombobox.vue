@@ -122,6 +122,23 @@ onMounted(() => {
   onUnmounted(() => document.removeEventListener('click', handler))
 })
 
+function optionClass(_suggestion: Suggestion, index: number) {
+  return [
+    'flex cursor-pointer items-center gap-2 px-3 py-2 text-sm',
+    index === activeIndex.value ? 'bg-jumbo-yellow text-jumbo-black' : 'text-jumbo-black'
+  ].join(' ')
+}
+
+function optionAttrs(suggestion: Suggestion, index: number) {
+  return {
+    id: `${listboxId}-option-${index}`,
+    role: 'option',
+    'aria-selected': index === activeIndex.value,
+    onClick: () => select(suggestion),
+    onMousemove: () => (activeIndex.value = index)
+  }
+}
+
 // A highlight into a list that just emptied would point at nothing.
 watch(
   () => props.suggestions,
@@ -182,35 +199,29 @@ watch(
       </button>
     </div>
 
-    <ul
+    <BaseList
       v-show="isExpanded"
       :id="listboxId"
       role="listbox"
       :aria-label="t('search.suggestions')"
-      class="absolute z-20 mt-1 max-h-72 w-full list-none overflow-auto rounded-card border border-jumbo-grey bg-white p-0 shadow-lg"
+      class="absolute z-20 mt-1 max-h-72 w-full overflow-auto rounded-card border border-jumbo-grey bg-white shadow-lg"
+      :items="suggestions"
+      :item-key="(suggestion) => `${suggestion.type}-${suggestion.value}`"
+      :item-class="optionClass"
+      :item-attrs="optionAttrs"
     >
-      <li
-        v-for="(suggestion, index) in suggestions"
-        :id="`${listboxId}-option-${index}`"
-        :key="`${suggestion.type}-${suggestion.value}`"
-        role="option"
-        :aria-selected="index === activeIndex"
-        class="flex cursor-pointer items-center gap-2 px-3 py-2 text-sm"
-        :class="index === activeIndex ? 'bg-jumbo-yellow text-jumbo-black' : 'text-jumbo-black'"
-        @click="select(suggestion)"
-        @mousemove="activeIndex = index"
-      >
+      <template #default="{ item }">
         <Icon
-          :name="suggestion.type === 'CITY' ? 'lucide:map-pin' : 'lucide:store'"
+          :name="item.type === 'CITY' ? 'lucide:map-pin' : 'lucide:store'"
           class="size-4 shrink-0 text-jumbo-grey"
           aria-hidden="true"
         />
-        <span>{{ suggestion.value }}</span>
+        <span>{{ item.value }}</span>
         <span class="sr-only">
-          {{ suggestion.type === 'CITY' ? t('search.typeCity') : t('search.typeStore') }}
+          {{ item.type === 'CITY' ? t('search.typeCity') : t('search.typeStore') }}
         </span>
-      </li>
-    </ul>
+      </template>
+    </BaseList>
 
     <p
       class="sr-only"

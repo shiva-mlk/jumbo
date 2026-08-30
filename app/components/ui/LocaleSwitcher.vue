@@ -5,25 +5,24 @@ const switchLocalePath = useSwitchLocalePath()
 
 <template>
   <nav :aria-label="t('locale.switch')">
-    <ul class="flex items-center gap-1">
-      <li
-        v-for="option in locales"
-        :key="option.code"
-      >
+    <BaseList
+      :items="locales"
+      :item-key="(option) => option.code"
+      class="flex items-center gap-1"
+    >
+      <template #default="{ item }">
         <NuxtLink
-          :to="switchLocalePath(option.code)"
+          :to="switchLocalePath(item.code)"
           class="rounded px-2 py-1 text-sm font-semibold text-jumbo-black"
           :class="
-            option.code === locale
-              ? 'bg-jumbo-black text-white'
-              : 'hover:bg-jumbo-black/10'
+            item.code === locale ? 'bg-jumbo-black text-white' : 'hover:bg-jumbo-black/10'
           "
-          :aria-current="option.code === locale ? 'true' : undefined"
+          :aria-current="item.code === locale ? 'true' : undefined"
         >
-          <span aria-hidden="true">{{ option.code.toUpperCase() }}</span>
-          <span class="sr-only">{{ option.name }}</span>
+          <span aria-hidden="true">{{ item.code.toUpperCase() }}</span>
+          <span class="sr-only">{{ item.name }}</span>
         </NuxtLink>
-      </li>
-    </ul>
+      </template>
+    </BaseList>
   </nav>
 </template>

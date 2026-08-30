@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import SearchCombobox from '@/components/ui/SearchCombobox.vue'
+import BaseList from '@/components/ui/BaseList.vue'
 import type { Suggestion } from '@/composables/useSuggestionsQuery'
 
 vi.stubGlobal('useI18n', () => ({ t: (key: string) => key }))
@@ -16,6 +17,7 @@ function mountCombobox(suggestions: Suggestion[] = SUGGESTIONS) {
   return mount(SearchCombobox, {
     props: { modelValue: 'eind', suggestions },
     global: {
+      components: { BaseList },
       stubs: { Icon: true },
       mocks: { $t: (key: string) => key }
     }

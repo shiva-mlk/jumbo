@@ -1,7 +1,9 @@
 <script setup lang="ts">
-withDefaults(defineProps<{ count?: number }>(), { count: 12 })
+const props = withDefaults(defineProps<{ count?: number }>(), { count: 12 })
 
 const { t } = useI18n()
+
+const placeholders = computed(() => Array.from({ length: props.count }, (_, index) => index))
 </script>
 
 <template>
@@ -13,13 +15,8 @@ const { t } = useI18n()
       {{ t('stores.loading') }}
     </p>
 
-    <StoreGrid>
-      <li
-        v-for="index in count"
-        :key="index"
-      >
-        <StoreCardSkeleton />
-      </li>
+    <StoreGrid :items="placeholders">
+      <StoreCardSkeleton />
     </StoreGrid>
   </div>
 </template>
