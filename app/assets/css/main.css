@@ -33,3 +33,21 @@ body {
   outline: 3px solid var(--color-jumbo-black);
   outline-offset: 2px;
 }
+
+/* Headings and body text share the brand stack; only weight and size differ. */
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Respect a visitor's reduced-motion preference across the whole app. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
