@@ -34,13 +34,16 @@ export function parseTime(value: string | undefined): ParsedTime | null {
   return { minutes: hours * 60 + mins, offsetMinutes }
 }
 
-interface ZonedNow {
+export interface ZonedNow {
   weekday: Weekday
   minutes: number
 }
-
 // Converts a Date to the store's local weekday
-function getZonedNow(now: Date, timeZone: string): ZonedNow | null {
+
+export function getZonedNow(
+  now: Date,
+  timeZone: string = STORE_TIME_ZONE
+): ZonedNow | null {
   if (Number.isNaN(now.getTime())) return null
 
   const parts = new Intl.DateTimeFormat('en-US', {

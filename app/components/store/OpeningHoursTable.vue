@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { WEEKDAYS, type OpeningHours, type Weekday } from '#shared/types/store'
-import { parseTime, formatMinutes, STORE_TIME_ZONE } from '#shared/utils/openingHours'
+import { WEEKDAYS, type OpeningHours } from '#shared/types/store'
+import { parseTime, formatMinutes, getZonedNow } from '#shared/utils/openingHours'
 
 const props = defineProps<{
   openingHours: OpeningHours
@@ -10,16 +10,7 @@ const props = defineProps<{
 const { t } = useI18n()
 const { nameOf } = useWeekdayNames()
 
-const today = computed<Weekday>(() => {
-  const name = new Intl.DateTimeFormat('en-US', {
-    timeZone: STORE_TIME_ZONE,
-    weekday: 'long'
-  })
-    .format(props.now)
-    .toLowerCase()
-
-  return (WEEKDAYS as readonly string[]).includes(name) ? (name as Weekday) : 'monday'
-})
+const today = computed(() => getZonedNow(props.now)?.weekday ?? null)
 
 const rows = computed(() =>
   WEEKDAYS.map((weekday) => {
