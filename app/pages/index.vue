@@ -14,7 +14,9 @@ const page = computed({
 })
 
 const searchInput = ref((route.query.q as string) ?? '')
-const query = useDebouncedRef(searchInput, 500)
+const SEARCH_DEBOUNCE_MS = 300
+
+const query = useDebouncedRef(searchInput, SEARCH_DEBOUNCE_MS)
 
 const { data: suggestionData, isFetching: isLoadingSuggestions } = useSuggestionsQuery(query)
 
