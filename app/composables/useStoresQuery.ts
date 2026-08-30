@@ -4,7 +4,7 @@ import type { Address, OpeningHours } from '#shared/types/store'
 export interface StoreListItem {
   id: string
   name: string
-  websiteUrl?: string
+  websiteUrl: string | null
   address: Pick<Address, 'formatted' | 'postalCode' | 'city'>
   openingHours: OpeningHours
 }
@@ -17,7 +17,7 @@ export interface StorePage {
   totalPages: number
 }
 
-const STORES_QUERY = /* GraphQL */ `
+export const STORES_QUERY = /* GraphQL */ `
   query Stores($query: String, $page: Int, $perPage: Int) {
     stores(query: $query, page: $page, perPage: $perPage) {
       total

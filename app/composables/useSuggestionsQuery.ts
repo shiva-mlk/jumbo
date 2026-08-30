@@ -5,7 +5,7 @@ export interface Suggestion {
   type: 'CITY' | 'STORE'
 }
 
-const SUGGESTIONS_QUERY = /* GraphQL */ `
+export const SUGGESTIONS_QUERY = /* GraphQL */ `
   query Suggestions($query: String!, $limit: Int) {
     suggestions(query: $query, limit: $limit) {
       value

@@ -32,7 +32,7 @@ on Node 22.
 | `npm run preview` | Serve the production build locally |
 | `npm run lint` | ESLint over the whole project |
 | `npm run typecheck` | `vue-tsc` against the strict TypeScript config |
-| `npm run test` | 93 unit tests (Vitest) |
+| `npm run test` | 97 unit tests (Vitest) |
 | `npm run test:watch` | Unit tests in watch mode |
 | `npm run test:e2e` | 28 end-to-end tests (Playwright) |
 
@@ -52,7 +52,7 @@ app/components/  ui/ is store-agnostic, store/ knows the domain
 dataset, deciding whether a store is open, and filtering are plain functions
 that take their inputs as arguments — including `now: Date`, which is what makes
 the opening-hours rules testable at a fixed moment. The GraphQL resolvers and
-the UI are thin layers over them. That is also why 81 of the 93 unit tests need
+the UI are thin layers over them. That is also why 85 of the 97 unit tests need
 no DOM at all.
 
 **GraphQL sits between the data and the UI** because that is how Jumbo's
@@ -157,5 +157,8 @@ applications. The language switcher is explicit instead.
   label them.
 - Map tiles come from OpenStreetMap, so the map is blank without a network
   connection. The rest of the page works offline.
-- The GraphQL schema is written by hand rather than generated. At around ten
-  types that is cheaper than adding codegen.
+- The client types and query documents are written by hand rather than
+  generated. A unit test validates every query document against the schema, so
+  a document can no longer drift from the server without a test failing.
+  Matching the TypeScript interfaces to the selection sets is still manual,
+  which is the part codegen would add.

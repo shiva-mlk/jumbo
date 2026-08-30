@@ -4,7 +4,7 @@ import type { Address, Commerce, Coordinates, Facilities, OpeningHours } from '#
 export interface StoreDetail {
   id: string
   name: string
-  websiteUrl?: string
+  websiteUrl: string | null
   address: Pick<Address, 'formatted' | 'postalCode' | 'city'>
   coordinates: Coordinates | null
   openingHours: OpeningHours
@@ -12,7 +12,7 @@ export interface StoreDetail {
   commerce: Commerce
 }
 
-const STORE_QUERY = /* GraphQL */ `
+export const STORE_QUERY = /* GraphQL */ `
   query Store($id: ID!) {
     store(id: $id) {
       id

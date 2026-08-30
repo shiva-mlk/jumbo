@@ -11,6 +11,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '#shared': fileURLToPath(new URL('./shared', import.meta.url)),
+      '#server': fileURLToPath(new URL('./server', import.meta.url)),
       '@': fileURLToPath(new URL('./app', import.meta.url)),
       '~': fileURLToPath(new URL('./app', import.meta.url))
     }
