@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, toRef } from 'vue'
+import { computed, toRef, type LiHTMLAttributes } from 'vue'
 import type { Suggestion } from '~/composables/useSuggestionsQuery'
 import { useCombobox } from '~/composables/useCombobox'
 
@@ -63,7 +63,7 @@ function optionClass(_suggestion: Suggestion, index: number) {
   ].join(' ')
 }
 
-function optionAttrs(suggestion: Suggestion, index: number) {
+function optionAttrs(suggestion: Suggestion, index: number): LiHTMLAttributes {
   return {
     id: `${listboxId}-option-${index}`,
     role: 'option',

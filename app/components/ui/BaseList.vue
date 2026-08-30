@@ -1,10 +1,12 @@
 <script setup lang="ts" generic="T">
+import type { LiHTMLAttributes } from 'vue'
+
 withDefaults(
   defineProps<{
     items: T[]
     itemKey?: (item: T, index: number) => string | number
     itemClass?: (item: T, index: number) => string | undefined
-    itemAttrs?: (item: T, index: number) => Record<string, unknown>
+    itemAttrs?: (item: T, index: number) => LiHTMLAttributes
   }>(),
   { itemKey: undefined, itemClass: undefined, itemAttrs: undefined }
 )
