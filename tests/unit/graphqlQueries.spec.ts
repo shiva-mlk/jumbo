@@ -5,7 +5,7 @@ import { STORES_QUERY } from '@/composables/useStoresQuery'
 import { STORE_QUERY } from '@/composables/useStoreQuery'
 import { SUGGESTIONS_QUERY } from '@/composables/useSuggestionsQuery'
 
-// The client types and query documents are written by hand, so we should check that they 
+// The client types and query documents are written by hand, so we should check that they
 // are still valid against the schema.
 const schema = buildSchema(typeDefs)
 

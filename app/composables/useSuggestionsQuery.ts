@@ -17,7 +17,9 @@ export const SUGGESTIONS_QUERY = /* GraphQL */ `
 export const MIN_SUGGESTION_LENGTH = 2
 
 export function useSuggestionsQuery(query: Ref<string>, limit: number = 8) {
-  const enabled = computed(() => query.value.trim().length >= MIN_SUGGESTION_LENGTH)
+  const enabled = computed(
+    () => query.value.trim().length >= MIN_SUGGESTION_LENGTH
+  )
 
   return useQuery({
     queryKey: ['suggestions', query],

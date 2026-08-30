@@ -10,7 +10,7 @@ export const WEEKDAYS = [
 
 export type Weekday = (typeof WEEKDAYS)[number]
 
-// Raw JSON shapes                                                            
+// Raw JSON shapes
 
 export interface RawAddress {
   street?: string
@@ -82,7 +82,7 @@ export interface RawStoreData {
   stores?: RawStore[]
 }
 
-// Normalized application model 
+// Normalized application model
 
 export interface Address {
   street: string

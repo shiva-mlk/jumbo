@@ -20,7 +20,9 @@ test.describe('Store overview', () => {
     await expect(page.getByText('806 stores')).toBeVisible()
   })
 
-  test('shows a different page of stores and reflects it in the URL', async ({ page }) => {
+  test('shows a different page of stores and reflects it in the URL', async ({
+    page
+  }) => {
     await gotoHydrated(page, '/')
 
     const firstOnPageOne = await page.getByRole('article').first().innerText()
@@ -28,10 +30,9 @@ test.describe('Store overview', () => {
     await page.getByRole('button', { name: 'Next page' }).click()
 
     await expect(page).toHaveURL(/[?&]page=2/)
-    await expect(page.getByRole('button', { name: 'Go to page 2' })).toHaveAttribute(
-      'aria-current',
-      'page'
-    )
+    await expect(
+      page.getByRole('button', { name: 'Go to page 2' })
+    ).toHaveAttribute('aria-current', 'page')
 
     const firstOnPageTwo = await page.getByRole('article').first().innerText()
     expect(firstOnPageTwo).not.toBe(firstOnPageOne)
@@ -40,22 +41,25 @@ test.describe('Store overview', () => {
   test('opens a page directly from the URL', async ({ page }) => {
     await gotoHydrated(page, '/?page=3')
 
-    await expect(page.getByRole('button', { name: 'Go to page 3' })).toHaveAttribute(
-      'aria-current',
-      'page'
-    )
+    await expect(
+      page.getByRole('button', { name: 'Go to page 3' })
+    ).toHaveAttribute('aria-current', 'page')
   })
 
   test('disables the previous button on the first page', async ({ page }) => {
     await gotoHydrated(page, '/')
 
-    await expect(page.getByRole('button', { name: 'Previous page' })).toBeDisabled()
+    await expect(
+      page.getByRole('button', { name: 'Previous page' })
+    ).toBeDisabled()
   })
 
   test('serves the Dutch translation under /nl', async ({ page }) => {
     await gotoHydrated(page, '/nl')
 
-    await expect(page.getByRole('heading', { name: 'Winkels', level: 1 })).toBeVisible()
+    await expect(
+      page.getByRole('heading', { name: 'Winkels', level: 1 })
+    ).toBeVisible()
     await expect(page.getByText('806 winkels')).toBeVisible()
     await expect(page.locator('html')).toHaveAttribute('lang', 'nl-NL')
   })

@@ -98,7 +98,9 @@ describe('SearchCombobox', () => {
     await input.trigger('focus')
     await input.trigger('keydown', { key: 'ArrowDown' })
 
-    const selected = wrapper.findAll('[role="option"]').map((o) => o.attributes('aria-selected'))
+    const selected = wrapper
+      .findAll('[role="option"]')
+      .map((o) => o.attributes('aria-selected'))
     expect(selected).toEqual(['true', 'false', 'false'])
   })
 
@@ -130,7 +132,9 @@ describe('SearchCombobox', () => {
 
     await wrapper.findAll('[role="option"]')[1]!.trigger('click')
 
-    expect(wrapper.emitted('submit')?.at(-1)).toEqual(['Jumbo Eindhoven Nederlandplein'])
+    expect(wrapper.emitted('submit')?.at(-1)).toEqual([
+      'Jumbo Eindhoven Nederlandplein'
+    ])
   })
 
   it('closes on Escape without changing the value', async () => {

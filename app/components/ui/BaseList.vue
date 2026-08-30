@@ -24,10 +24,7 @@ defineSlots<{
       :class="itemClass?.(item, index)"
       v-bind="itemAttrs?.(item, index)"
     >
-      <slot
-        :item="item"
-        :index="index"
-      />
+      <slot :item="item" :index="index" />
     </li>
   </ul>
 </template>

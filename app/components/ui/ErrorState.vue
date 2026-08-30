@@ -24,11 +24,7 @@ const { t } = useI18n()
     <p class="mt-1 text-sm text-jumbo-black">
       {{ message ?? t('stores.errorBody') }}
     </p>
-    <BaseButton
-      v-if="retryable"
-      class="mt-4"
-      @click="emit('retry')"
-    >
+    <BaseButton v-if="retryable" class="mt-4" @click="emit('retry')">
       {{ t('common.retry') }}
     </BaseButton>
   </div>

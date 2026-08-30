@@ -29,8 +29,14 @@ const sundayAt = (time: string) => new Date(`2026-08-30T${time}:00+02:00`)
 
 describe('parseTime', () => {
   it('parses the offset format used by most of the dataset', () => {
-    expect(parseTime('08:00+01:00')).toEqual({ minutes: 480, offsetMinutes: 60 })
-    expect(parseTime('21:30+01:00')).toEqual({ minutes: 1290, offsetMinutes: 60 })
+    expect(parseTime('08:00+01:00')).toEqual({
+      minutes: 480,
+      offsetMinutes: 60
+    })
+    expect(parseTime('21:30+01:00')).toEqual({
+      minutes: 1290,
+      offsetMinutes: 60
+    })
   })
 
   it('parses the Z format used by three records', () => {
@@ -38,7 +44,10 @@ describe('parseTime', () => {
   })
 
   it('parses a negative offset', () => {
-    expect(parseTime('08:00-05:30')).toEqual({ minutes: 480, offsetMinutes: -330 })
+    expect(parseTime('08:00-05:30')).toEqual({
+      minutes: 480,
+      offsetMinutes: -330
+    })
   })
 
   it('handles midnight and one minute past it', () => {
@@ -102,8 +111,12 @@ describe('isStoreOpen', () => {
   })
 
   it('is closed when the window is inverted or empty', () => {
-    const inverted = makeHours({ monday: { opensAt: '21:00+01:00', closesAt: '08:00+01:00' } })
-    const empty = makeHours({ monday: { opensAt: '08:00+01:00', closesAt: '08:00+01:00' } })
+    const inverted = makeHours({
+      monday: { opensAt: '21:00+01:00', closesAt: '08:00+01:00' }
+    })
+    const empty = makeHours({
+      monday: { opensAt: '08:00+01:00', closesAt: '08:00+01:00' }
+    })
     expect(isStoreOpen(inverted, mondayAt('23:00'))).toBe(false)
     expect(isStoreOpen(empty, mondayAt('08:00'))).toBe(false)
   })
@@ -146,7 +159,9 @@ describe('getNextOpening', () => {
   })
 
   it('wraps around the end of the week', () => {
-    const hours = makeHours({ monday: { opensAt: '08:00+01:00', closesAt: '21:00+01:00' } })
+    const hours = makeHours({
+      monday: { opensAt: '08:00+01:00', closesAt: '21:00+01:00' }
+    })
 
     expect(getNextOpening(hours, sundayAt('12:00'))).toEqual({
       weekday: 'monday',

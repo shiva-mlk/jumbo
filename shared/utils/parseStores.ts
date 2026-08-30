@@ -32,7 +32,9 @@ function parseAddress(raw: RawStore['location']): Address {
   let houseNumber = rawHouseNumber
 
   if (!houseNumber) {
-    const match = rawStreet.match(/^(.*?)\s+(\d+\s*[a-zA-Z]?(?:[-/]\s*\d+\s*[a-zA-Z]?)?)$/)
+    const match = rawStreet.match(
+      /^(.*?)\s+(\d+\s*[a-zA-Z]?(?:[-/]\s*\d+\s*[a-zA-Z]?)?)$/
+    )
     if (match?.[1] && match[2]) {
       street = match[1].trim()
       houseNumber = match[2].replace(/\s+/g, '')
@@ -107,7 +109,9 @@ function parseFacilities(raw: RawStore['facilities']): Facilities {
 }
 
 // Extracts availability and valid dates for a single commerce channel
-function parseCommerceChannel(raw: RawCommerceChannel | undefined): CommerceChannel {
+function parseCommerceChannel(
+  raw: RawCommerceChannel | undefined
+): CommerceChannel {
   return {
     available: asBoolean(raw?.available),
     startsOn: asString(raw?.availability?.startsOn) ?? null,
@@ -137,8 +141,11 @@ export function parseStore(raw: unknown): Store | null {
   return {
     id,
     name,
-    complexNumber: typeof store.complexNumber === 'number' ? store.complexNumber : null,
-    ...(asString(store.websiteURL) ? { websiteUrl: asString(store.websiteURL) } : {}),
+    complexNumber:
+      typeof store.complexNumber === 'number' ? store.complexNumber : null,
+    ...(asString(store.websiteURL)
+      ? { websiteUrl: asString(store.websiteURL) }
+      : {}),
     address: parseAddress(store.location),
     coordinates: parseCoordinates(store.location),
     openingHours: parseOpeningHours(store.openingHours),
@@ -156,7 +163,9 @@ export function parseStores(raw: unknown): Store[] {
   const { stores } = raw as { stores?: unknown }
 
   if (!Array.isArray(stores)) {
-    throw new StoreParseError('Expected store data to contain a "stores" array.')
+    throw new StoreParseError(
+      'Expected store data to contain a "stores" array.'
+    )
   }
 
   return stores

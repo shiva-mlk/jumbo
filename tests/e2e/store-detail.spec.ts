@@ -18,7 +18,10 @@ test.describe('Store detail', () => {
     await gotoHydrated(page, '/stores/3126')
 
     await expect(
-      page.getByRole('heading', { name: 'Jumbo Eindhoven Nederlandplein', level: 1 })
+      page.getByRole('heading', {
+        name: 'Jumbo Eindhoven Nederlandplein',
+        level: 1
+      })
     ).toBeVisible()
     await expect(page.getByText('Nederlandplein 103')).toBeVisible()
 
@@ -35,7 +38,9 @@ test.describe('Store detail', () => {
   test('shows facilities and shopping options', async ({ page }) => {
     await gotoHydrated(page, '/stores/3126')
 
-    await expect(page.getByRole('heading', { name: 'About this store' })).toBeVisible()
+    await expect(
+      page.getByRole('heading', { name: 'About this store' })
+    ).toBeVisible()
     await expect(page.getByText('Wi-Fi')).toBeVisible()
     await expect(page.getByText('Home delivery')).toBeVisible()
   })
@@ -51,16 +56,20 @@ test.describe('Store detail', () => {
   }) => {
     await gotoHydrated(page, '/stores/4954')
 
-    await expect(page.getByText('No location is available for this store.')).toBeVisible()
+    await expect(
+      page.getByText('No location is available for this store.')
+    ).toBeVisible()
     await expect(page.locator('.leaflet-container')).toHaveCount(0)
   })
 
   test('distinguishes today by weight, not colour alone', async ({ page }) => {
     await gotoHydrated(page, '/stores/3126')
 
-    const weights = await page.locator('table tr th').evaluateAll((cells) =>
-      cells.map((cell) => getComputedStyle(cell).fontWeight)
-    )
+    const weights = await page
+      .locator('table tr th')
+      .evaluateAll((cells) =>
+        cells.map((cell) => getComputedStyle(cell).fontWeight)
+      )
 
     expect(weights.filter((weight) => weight === '700')).toHaveLength(1)
     expect(weights.filter((weight) => weight !== '700')).toHaveLength(6)
@@ -85,6 +94,8 @@ test.describe('Store detail', () => {
     await page.getByRole('link', { name: 'Back to all stores' }).click()
 
     await expect(page).toHaveURL(/\/$/)
-    await expect(page.getByRole('heading', { name: 'Stores', level: 1 })).toBeVisible()
+    await expect(
+      page.getByRole('heading', { name: 'Stores', level: 1 })
+    ).toBeVisible()
   })
 })

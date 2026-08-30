@@ -10,7 +10,10 @@ const { t } = useI18n()
 
 const ZOOM = 16
 
-const center = computed<[number, number]>(() => [props.coordinates.lat, props.coordinates.lng])
+const center = computed<[number, number]>(() => [
+  props.coordinates.lat,
+  props.coordinates.lng
+])
 </script>
 
 <template>

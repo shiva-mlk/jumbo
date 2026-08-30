@@ -34,13 +34,34 @@ export const STORES_QUERY = /* GraphQL */ `
           formatted
         }
         openingHours {
-          monday { opensAt closesAt }
-          tuesday { opensAt closesAt }
-          wednesday { opensAt closesAt }
-          thursday { opensAt closesAt }
-          friday { opensAt closesAt }
-          saturday { opensAt closesAt }
-          sunday { opensAt closesAt }
+          monday {
+            opensAt
+            closesAt
+          }
+          tuesday {
+            opensAt
+            closesAt
+          }
+          wednesday {
+            opensAt
+            closesAt
+          }
+          thursday {
+            opensAt
+            closesAt
+          }
+          friday {
+            opensAt
+            closesAt
+          }
+          saturday {
+            opensAt
+            closesAt
+          }
+          sunday {
+            opensAt
+            closesAt
+          }
         }
       }
     }

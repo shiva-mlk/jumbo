@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { WEEKDAYS, type OpeningHours } from '#shared/types/store'
-import { parseTime, formatMinutes, getZonedNow } from '#shared/utils/openingHours'
+import {
+  parseTime,
+  formatMinutes,
+  getZonedNow
+} from '#shared/utils/openingHours'
 
 const props = defineProps<{
   openingHours: OpeningHours
@@ -34,7 +38,9 @@ const rows = computed(() =>
 <template>
   <table class="w-full text-sm">
     <caption class="sr-only">
-      {{ t('store.openingHours') }}
+      {{
+        t('store.openingHours')
+      }}
     </caption>
     <tbody>
       <tr
@@ -49,10 +55,9 @@ const rows = computed(() =>
           :class="row.isToday ? 'font-bold' : 'font-normal'"
         >
           {{ row.label }}
-          <span
-            v-if="row.isToday"
-            class="sr-only"
-          >({{ t('store.today') }})</span>
+          <span v-if="row.isToday" class="sr-only"
+            >({{ t('store.today') }})</span
+          >
         </th>
         <td class="py-2 text-right tabular-nums">
           {{ row.hours ?? t('store.closed') }}

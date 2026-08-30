@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import type { OpeningHours } from '#shared/types/store'
-import { getNextOpening, getTodaysClosingTime, isStoreOpen } from '#shared/utils/openingHours'
+import {
+  getNextOpening,
+  getTodaysClosingTime,
+  isStoreOpen
+} from '#shared/utils/openingHours'
 
 const props = defineProps<{
   openingHours: OpeningHours
@@ -10,8 +14,12 @@ const props = defineProps<{
 const { t } = useI18n()
 
 const isOpen = computed(() => isStoreOpen(props.openingHours, props.now))
-const closingTime = computed(() => getTodaysClosingTime(props.openingHours, props.now))
-const nextOpening = computed(() => getNextOpening(props.openingHours, props.now))
+const closingTime = computed(() =>
+  getTodaysClosingTime(props.openingHours, props.now)
+)
+const nextOpening = computed(() =>
+  getNextOpening(props.openingHours, props.now)
+)
 
 const { nameOf } = useWeekdayNames()
 
@@ -25,10 +33,15 @@ const label = computed(() => {
   const next = nextOpening.value
   if (!next) return t('status.closed')
 
-  if (next.dayOffset === 0) return t('status.closedOpensToday', { time: next.time })
-  if (next.dayOffset === 1) return t('status.closedOpensTomorrow', { time: next.time })
+  if (next.dayOffset === 0)
+    return t('status.closedOpensToday', { time: next.time })
+  if (next.dayOffset === 1)
+    return t('status.closedOpensTomorrow', { time: next.time })
 
-  return t('status.closedOpensOn', { day: nameOf(next.weekday), time: next.time })
+  return t('status.closedOpensOn', {
+    day: nameOf(next.weekday),
+    time: next.time
+  })
 })
 </script>
 

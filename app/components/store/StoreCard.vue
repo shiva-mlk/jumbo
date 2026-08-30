@@ -25,15 +25,12 @@ const localePath = useLocalePath()
       </h2>
 
       <address class="mt-1 text-sm not-italic text-jumbo-grey">
-        {{ store.address.formatted }}<br >
+        {{ store.address.formatted }}<br />
         {{ store.address.postalCode }} {{ store.address.city }}
       </address>
     </div>
 
-    <OpenStatusBadge
-      :opening-hours="store.openingHours"
-      :now="now"
-    />
+    <OpenStatusBadge :opening-hours="store.openingHours" :now="now" />
 
     <a
       v-if="store.websiteUrl"
@@ -43,11 +40,7 @@ const localePath = useLocalePath()
       class="mt-auto inline-flex w-fit items-center gap-1 text-sm font-semibold text-jumbo-black underline underline-offset-2"
     >
       {{ t('store.visitWebsite') }}
-      <Icon
-        name="lucide:external-link"
-        class="size-4"
-        aria-hidden="true"
-      />
+      <Icon name="lucide:external-link" class="size-4" aria-hidden="true" />
       <span class="sr-only">{{ t('common.opensInNewTab') }}</span>
     </a>
   </article>

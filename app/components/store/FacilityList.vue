@@ -25,7 +25,11 @@ const FACILITY_ICONS: Partial<Record<keyof Facilities, string>> = {
 const available = computed(() =>
   (Object.keys(FACILITY_ICONS) as (keyof Facilities)[])
     .filter((key) => props.facilities[key] === true)
-    .map((key) => ({ key, icon: FACILITY_ICONS[key]!, label: t(`facilities.${key}`) }))
+    .map((key) => ({
+      key,
+      icon: FACILITY_ICONS[key]!,
+      label: t(`facilities.${key}`)
+    }))
 )
 
 const services = computed(() =>
@@ -40,7 +44,9 @@ const services = computed(() =>
 <template>
   <div class="space-y-6">
     <section>
-      <h3 class="text-sm font-bold text-jumbo-black">{{ t('store.facilities') }}</h3>
+      <h3 class="text-sm font-bold text-jumbo-black">
+        {{ t('store.facilities') }}
+      </h3>
 
       <BaseList
         v-if="available.length"
@@ -62,23 +68,24 @@ const services = computed(() =>
         </template>
       </BaseList>
 
-      <p
-        v-else
-        class="mt-2 text-sm text-jumbo-grey"
-      >
+      <p v-else class="mt-2 text-sm text-jumbo-grey">
         {{ t('store.noFacilities') }}
       </p>
     </section>
 
     <section v-if="facilities.parking">
-      <h3 class="text-sm font-bold text-jumbo-black">{{ t('facilities.parking') }}</h3>
+      <h3 class="text-sm font-bold text-jumbo-black">
+        {{ t('facilities.parking') }}
+      </h3>
       <p class="mt-1 text-sm text-jumbo-grey">
         {{ t(`parking.${facilities.parking}`, facilities.parking) }}
       </p>
     </section>
 
     <section>
-      <h3 class="text-sm font-bold text-jumbo-black">{{ t('store.services') }}</h3>
+      <h3 class="text-sm font-bold text-jumbo-black">
+        {{ t('store.services') }}
+      </h3>
 
       <BaseList
         :items="services"
@@ -93,11 +100,15 @@ const services = computed(() =>
               :class="item.available ? 'text-jumbo-green' : 'text-jumbo-grey'"
               aria-hidden="true"
             />
-            <span :class="item.available ? 'text-jumbo-black' : 'text-jumbo-grey'">
+            <span
+              :class="item.available ? 'text-jumbo-black' : 'text-jumbo-grey'"
+            >
               {{ item.label }}
             </span>
             <span class="sr-only">
-              {{ item.available ? t('common.available') : t('common.unavailable') }}
+              {{
+                item.available ? t('common.available') : t('common.unavailable')
+              }}
             </span>
           </span>
         </template>

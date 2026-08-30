@@ -25,16 +25,16 @@ on Node 22.
 
 ## Scripts
 
-| Script | What it does |
-| --- | --- |
-| `npm run dev` | Development server with hot reload |
-| `npm run build` | Production build |
-| `npm run preview` | Serve the production build locally |
-| `npm run lint` | ESLint over the whole project |
-| `npm run typecheck` | `vue-tsc` against the strict TypeScript config |
-| `npm run test` | 97 unit tests (Vitest) |
-| `npm run test:watch` | Unit tests in watch mode |
-| `npm run test:e2e` | 28 end-to-end tests (Playwright) |
+| Script               | What it does                                   |
+| -------------------- | ---------------------------------------------- |
+| `npm run dev`        | Development server with hot reload             |
+| `npm run build`      | Production build                               |
+| `npm run preview`    | Serve the production build locally             |
+| `npm run lint`       | ESLint over the whole project                  |
+| `npm run typecheck`  | `vue-tsc` against the strict TypeScript config |
+| `npm run test`       | 97 unit tests (Vitest)                         |
+| `npm run test:watch` | Unit tests in watch mode                       |
+| `npm run test:e2e`   | 28 end-to-end tests (Playwright)               |
 
 `npm run test:e2e` builds the app and starts a preview server itself, so the
 end-to-end suite runs against a production build rather than the dev server.
@@ -93,39 +93,39 @@ applications. The language switcher is explicit instead.
 
 ### Functional
 
-| Requirement | Where |
-| --- | --- |
-| **Must** — Paginated overview of all stores | `app/pages/index.vue`, `PaginationControls.vue` |
-| **Must** — Name, address, website link, open status | `StoreCard.vue`, `OpenStatusBadge.vue` |
-| **Must** — When a closed store opens next | `getNextOpening()` in `shared/utils/openingHours.ts` |
-| **Should** — Filter through search | `SearchCombobox.vue`, `filterStores()` |
-| **Should** — Autocomplete | `SearchCombobox.vue`, `suggestions` query |
-| **Should** — Styled like Jumbo.com, intuitive | `app/layouts/default.vue`, brand tokens in `main.css` |
-| **Could** — Store location on a map | `StoreMap.vue` (Leaflet + OpenStreetMap) |
-| **Could** — Facilities and commerce | `FacilityList.vue` |
+| Requirement                                         | Where                                                 |
+| --------------------------------------------------- | ----------------------------------------------------- |
+| **Must** — Paginated overview of all stores         | `app/pages/index.vue`, `PaginationControls.vue`       |
+| **Must** — Name, address, website link, open status | `StoreCard.vue`, `OpenStatusBadge.vue`                |
+| **Must** — When a closed store opens next           | `getNextOpening()` in `shared/utils/openingHours.ts`  |
+| **Should** — Filter through search                  | `SearchCombobox.vue`, `filterStores()`                |
+| **Should** — Autocomplete                           | `SearchCombobox.vue`, `suggestions` query             |
+| **Should** — Styled like Jumbo.com, intuitive       | `app/layouts/default.vue`, brand tokens in `main.css` |
+| **Could** — Store location on a map                 | `StoreMap.vue` (Leaflet + OpenStreetMap)              |
+| **Could** — Facilities and commerce                 | `FacilityList.vue`                                    |
 
 ### Non-functional
 
-| Requirement | Where |
-| --- | --- |
-| **Must** — JavaScript or TypeScript | TypeScript throughout |
-| **Must** — Easy to run locally | `npm install && npm run dev` |
-| **Must** — Accessible through Git | This repository |
-| **Should** — Strongly typed | `typescript.strict`, `npm run typecheck` passes |
-| **Should** — Performant and scalable | Server-side filtering and pagination, SSR hydration, one shared clock for all cards |
-| **Should** — Accessibility standards | See below |
-| **Should** — Parsing and filtering unit tested | 73 tests across `parseStores`, `openingHours`, `filterStores` |
-| **Could** — Internationalisation | `@nuxtjs/i18n`, English and Dutch |
-| **Could** — Error and loading states | `ErrorState.vue`, `EmptyState.vue`, `StoreGridSkeleton.vue`, `app/error.vue` |
-| **Could** — End-to-end tests | 28 Playwright tests in `tests/e2e/` |
+| Requirement                                    | Where                                                                               |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------- |
+| **Must** — JavaScript or TypeScript            | TypeScript throughout                                                               |
+| **Must** — Easy to run locally                 | `npm install && npm run dev`                                                        |
+| **Must** — Accessible through Git              | This repository                                                                     |
+| **Should** — Strongly typed                    | `typescript.strict`, `npm run typecheck` passes                                     |
+| **Should** — Performant and scalable           | Server-side filtering and pagination, SSR hydration, one shared clock for all cards |
+| **Should** — Accessibility standards           | See below                                                                           |
+| **Should** — Parsing and filtering unit tested | 73 tests across `parseStores`, `openingHours`, `filterStores`                       |
+| **Could** — Internationalisation               | `@nuxtjs/i18n`, English and Dutch                                                   |
+| **Could** — Error and loading states           | `ErrorState.vue`, `EmptyState.vue`, `StoreGridSkeleton.vue`, `app/error.vue`        |
+| **Could** — End-to-end tests                   | 28 Playwright tests in `tests/e2e/`                                                 |
 
 ### Bonus challenges
 
-| Challenge | Status |
-| --- | --- |
-| Use Nuxt | Nuxt 4 |
-| Expose the JSON over GraphQL | GraphQL Yoga at `/api/graphql` |
-| Automated pipeline | GitHub Actions: lint, types, unit and end-to-end tests |
+| Challenge                    | Status                                                 |
+| ---------------------------- | ------------------------------------------------------ |
+| Use Nuxt                     | Nuxt 4                                                 |
+| Expose the JSON over GraphQL | GraphQL Yoga at `/api/graphql`                         |
+| Automated pipeline           | GitHub Actions: lint, types, unit and end-to-end tests |
 
 ## Accessibility
 
@@ -140,14 +140,14 @@ applications. The language switcher is explicit instead.
 
 ## Tests
 
-| Suite | Count | Covers |
-| --- | --- | --- |
-| `parseStores.spec.ts` | 15 | Normalising the raw dataset and its edge cases |
-| `openingHours.spec.ts` | 28 | Open/closed, next opening, time parsing, summer time |
-| `filterStores.spec.ts` | 30 | Search, diacritics, suggestions, pagination |
-| `useDebouncedRef.spec.ts` | 8 | Debounce timing and cleanup |
-| `SearchCombobox.spec.ts` | 12 | Combobox keyboard behaviour and ARIA |
-| `tests/e2e/` | 28 | Overview, search, detail page, errors, accessibility |
+| Suite                     | Count | Covers                                               |
+| ------------------------- | ----- | ---------------------------------------------------- |
+| `parseStores.spec.ts`     | 15    | Normalising the raw dataset and its edge cases       |
+| `openingHours.spec.ts`    | 28    | Open/closed, next opening, time parsing, summer time |
+| `filterStores.spec.ts`    | 30    | Search, diacritics, suggestions, pagination          |
+| `useDebouncedRef.spec.ts` | 8     | Debounce timing and cleanup                          |
+| `SearchCombobox.spec.ts`  | 12    | Combobox keyboard behaviour and ARIA                 |
+| `tests/e2e/`              | 28    | Overview, search, detail page, errors, accessibility |
 
 ## Known limitations
 

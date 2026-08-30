@@ -15,7 +15,9 @@ const switchLocalePath = useSwitchLocalePath()
           :to="switchLocalePath(item.code)"
           class="rounded px-2 py-1 text-sm font-semibold text-jumbo-black"
           :class="
-            item.code === locale ? 'bg-jumbo-black text-white' : 'hover:bg-jumbo-black/10'
+            item.code === locale
+              ? 'bg-jumbo-black text-white'
+              : 'hover:bg-jumbo-black/10'
           "
           :aria-current="item.code === locale ? 'true' : undefined"
         >

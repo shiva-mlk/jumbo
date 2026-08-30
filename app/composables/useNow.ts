@@ -1,4 +1,4 @@
-// A clock that ticks once a minute, 
+// A clock that ticks once a minute,
 // so that the store open/closed status can be reactive without a full page refresh.
 export function useNow(intervalMs: number = 60_000) {
   const now = ref(new Date())

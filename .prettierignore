@@ -1,0 +1,9 @@
+.nuxt
+.output
+dist
+node_modules
+public
+test-results
+playwright-report
+server/data
+package-lock.json

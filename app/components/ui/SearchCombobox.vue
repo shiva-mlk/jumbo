@@ -42,7 +42,9 @@ const {
 })
 
 const activeId = computed(() =>
-  activeIndex.value >= 0 ? `${listboxId}-option-${activeIndex.value}` : undefined
+  activeIndex.value >= 0
+    ? `${listboxId}-option-${activeIndex.value}`
+    : undefined
 )
 
 function onInput(event: Event) {
@@ -59,7 +61,9 @@ function clear() {
 function optionClass(_suggestion: Suggestion, index: number) {
   return [
     'flex cursor-pointer items-center gap-2 px-3 py-2 text-sm',
-    index === activeIndex.value ? 'bg-jumbo-yellow text-jumbo-black' : 'text-jumbo-black'
+    index === activeIndex.value
+      ? 'bg-jumbo-yellow text-jumbo-black'
+      : 'text-jumbo-black'
   ].join(' ')
 }
 
@@ -75,14 +79,8 @@ function optionAttrs(suggestion: Suggestion, index: number): LiHTMLAttributes {
 </script>
 
 <template>
-  <div
-    ref="containerRef"
-    class="relative"
-  >
-    <label
-      :for="inputId"
-      class="block text-sm font-semibold text-jumbo-black"
-    >
+  <div ref="containerRef" class="relative">
+    <label :for="inputId" class="block text-sm font-semibold text-jumbo-black">
       {{ t('search.label') }}
     </label>
 
@@ -108,7 +106,7 @@ function optionAttrs(suggestion: Suggestion, index: number): LiHTMLAttributes {
         @input="onInput"
         @keydown="onKeydown"
         @focus="open"
-      >
+      />
 
       <button
         v-if="modelValue"
@@ -117,11 +115,7 @@ function optionAttrs(suggestion: Suggestion, index: number): LiHTMLAttributes {
         :aria-label="t('search.clear')"
         @click="clear"
       >
-        <Icon
-          name="lucide:x"
-          class="size-4"
-          aria-hidden="true"
-        />
+        <Icon name="lucide:x" class="size-4" aria-hidden="true" />
       </button>
     </div>
 
@@ -144,15 +138,14 @@ function optionAttrs(suggestion: Suggestion, index: number): LiHTMLAttributes {
         />
         <span>{{ item.value }}</span>
         <span class="sr-only">
-          {{ item.type === 'CITY' ? t('search.typeCity') : t('search.typeStore') }}
+          {{
+            item.type === 'CITY' ? t('search.typeCity') : t('search.typeStore')
+          }}
         </span>
       </template>
     </BaseList>
 
-    <p
-      class="sr-only"
-      role="status"
-    >
+    <p class="sr-only" role="status">
       <template v-if="loading">{{ t('search.loading') }}</template>
       <template v-else-if="isExpanded">
         {{ t('search.resultsAvailable', suggestions.length) }}

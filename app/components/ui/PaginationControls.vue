@@ -10,7 +10,8 @@ const { t } = useI18n()
 
 const pages = computed<(number | 'gap')[]>(() => {
   const { page, totalPages } = props
-  if (totalPages <= 7) return Array.from({ length: totalPages }, (_, i) => i + 1)
+  if (totalPages <= 7)
+    return Array.from({ length: totalPages }, (_, i) => i + 1)
 
   const result: (number | 'gap')[] = [1]
   const start = Math.max(2, page - 1)
@@ -43,22 +44,16 @@ function go(page: number) {
       :aria-label="t('pagination.previous')"
       @click="go(page - 1)"
     >
-      <Icon
-        name="lucide:chevron-left"
-        class="size-4"
-        aria-hidden="true"
-      />
+      <Icon name="lucide:chevron-left" class="size-4" aria-hidden="true" />
     </BaseButton>
 
-    <template
-      v-for="(entry, index) in pages"
-      :key="`${entry}-${index}`"
-    >
+    <template v-for="(entry, index) in pages" :key="`${entry}-${index}`">
       <span
         v-if="entry === 'gap'"
         class="px-1 text-jumbo-grey"
         aria-hidden="true"
-      >…</span>
+        >…</span
+      >
 
       <BaseButton
         v-else
@@ -78,11 +73,7 @@ function go(page: number) {
       :aria-label="t('pagination.next')"
       @click="go(page + 1)"
     >
-      <Icon
-        name="lucide:chevron-right"
-        class="size-4"
-        aria-hidden="true"
-      />
+      <Icon name="lucide:chevron-right" class="size-4" aria-hidden="true" />
     </BaseButton>
   </nav>
 </template>

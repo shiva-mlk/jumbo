@@ -7,7 +7,10 @@ import {
 } from '@tanstack/vue-query'
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const vueQueryState = useState<DehydratedState | null>('vue-query', () => null)
+  const vueQueryState = useState<DehydratedState | null>(
+    'vue-query',
+    () => null
+  )
 
   const queryClient = new QueryClient({
     defaultOptions: {

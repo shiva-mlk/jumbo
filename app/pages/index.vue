@@ -9,7 +9,9 @@ const page = computed({
     return Number.isFinite(value) && value >= 1 ? Math.floor(value) : 1
   },
   set: (value: number) => {
-    router.replace({ query: { ...route.query, page: value > 1 ? String(value) : undefined } })
+    router.replace({
+      query: { ...route.query, page: value > 1 ? String(value) : undefined }
+    })
   }
 })
 
@@ -18,22 +20,34 @@ const SEARCH_DEBOUNCE_MS = 300
 
 const query = useDebouncedRef(searchInput, SEARCH_DEBOUNCE_MS)
 
-const { data: suggestionData, isFetching: isLoadingSuggestions } = useSuggestionsQuery(query)
+const { data: suggestionData, isFetching: isLoadingSuggestions } =
+  useSuggestionsQuery(query)
 
 const suggestions = computed(() => suggestionData.value ?? [])
 
 watch(query, (value) => {
-  router.replace({ query: { ...route.query, q: value || undefined, page: undefined } })
+  router.replace({
+    query: { ...route.query, q: value || undefined, page: undefined }
+  })
 })
 
 function onSearchSubmit(value: string) {
   searchInput.value = value
-  router.replace({ query: { ...route.query, q: value || undefined, page: undefined } })
+  router.replace({
+    query: { ...route.query, q: value || undefined, page: undefined }
+  })
 }
 const now = useNow()
 
-const { data, isPending, isError, error, refetch, isPlaceholderData, suspense } =
-  useStoresQuery(query, page)
+const {
+  data,
+  isPending,
+  isError,
+  error,
+  refetch,
+  isPlaceholderData,
+  suspense
+} = useStoresQuery(query, page)
 
 onServerPrefetch(() => suspense())
 
@@ -58,10 +72,7 @@ function onPageChange(next: number) {
     />
 
     <!-- Loading -->
-    <StoreGridSkeleton
-      v-if="isPending"
-      class="mt-6"
-    />
+    <StoreGridSkeleton v-if="isPending" class="mt-6" />
 
     <!-- Error -->
     <ErrorState
@@ -75,18 +86,14 @@ function onPageChange(next: number) {
     <EmptyState
       v-else-if="data && data.total === 0"
       class="mt-6"
-      :message="query ? t('stores.emptyForQuery', { query }) : t('stores.empty')"
+      :message="
+        query ? t('stores.emptyForQuery', { query }) : t('stores.empty')
+      "
     />
 
     <!-- Results -->
-    <div
-      v-else-if="data"
-      class="mt-6"
-    >
-      <p
-        class="text-sm text-jumbo-grey"
-        role="status"
-      >
+    <div v-else-if="data" class="mt-6">
+      <p class="text-sm text-jumbo-grey" role="status">
         {{ t('stores.count', data.total) }}
       </p>
 
@@ -97,10 +104,7 @@ function onPageChange(next: number) {
         :item-key="(store) => store.id"
       >
         <template #default="{ item }">
-          <StoreCard
-            :store="item"
-            :now="now"
-          />
+          <StoreCard :store="item" :now="now" />
         </template>
       </StoreGrid>
 

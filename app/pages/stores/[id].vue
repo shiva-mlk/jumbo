@@ -6,10 +6,21 @@ const localePath = useLocalePath()
 const id = computed(() => String(route.params.id))
 const now = useNow()
 
-const { data: store, isPending, isError, error, refetch, suspense } = useStoreQuery(id)
+const {
+  data: store,
+  isPending,
+  isError,
+  error,
+  refetch,
+  suspense
+} = useStoreQuery(id)
 
 function notFound() {
-  return createError({ statusCode: 404, statusMessage: t('store.notFound'), fatal: true })
+  return createError({
+    statusCode: 404,
+    statusMessage: t('store.notFound'),
+    fatal: true
+  })
 }
 
 onServerPrefetch(async () => {
@@ -30,7 +41,10 @@ watch(
   { immediate: true }
 )
 
-useHead({ title: () => (store.value ? `${store.value.name} | ${t('app.name')}` : t('app.name')) })
+useHead({
+  title: () =>
+    store.value ? `${store.value.name} | ${t('app.name')}` : t('app.name')
+})
 </script>
 
 <template>
@@ -39,22 +53,12 @@ useHead({ title: () => (store.value ? `${store.value.name} | ${t('app.name')}` :
       :to="localePath('/')"
       class="inline-flex items-center gap-1 text-sm font-semibold text-jumbo-black hover:underline"
     >
-      <Icon
-        name="lucide:chevron-left"
-        class="size-4"
-        aria-hidden="true"
-      />
+      <Icon name="lucide:chevron-left" class="size-4" aria-hidden="true" />
       {{ t('store.backToOverview') }}
     </NuxtLink>
 
-    <div
-      v-if="isPending"
-      class="mt-6 space-y-4"
-    >
-      <p
-        class="sr-only"
-        role="status"
-      >
+    <div v-if="isPending" class="mt-6 space-y-4">
+      <p class="sr-only" role="status">
         {{ t('store.loading') }}
       </p>
       <div
@@ -74,22 +78,16 @@ useHead({ title: () => (store.value ? `${store.value.name} | ${t('app.name')}` :
       @retry="refetch()"
     />
 
-    <article
-      v-else-if="store"
-      class="mt-6"
-    >
+    <article v-else-if="store" class="mt-6">
       <h1 class="text-2xl font-bold text-jumbo-black">{{ store.name }}</h1>
 
       <address class="mt-2 text-jumbo-grey not-italic">
-        {{ store.address.formatted }}<br >
+        {{ store.address.formatted }}<br />
         {{ store.address.postalCode }} {{ store.address.city }}
       </address>
 
       <div class="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2">
-        <OpenStatusBadge
-          :opening-hours="store.openingHours"
-          :now="now"
-        />
+        <OpenStatusBadge :opening-hours="store.openingHours" :now="now" />
 
         <a
           v-if="store.websiteUrl"
@@ -99,18 +97,16 @@ useHead({ title: () => (store.value ? `${store.value.name} | ${t('app.name')}` :
           class="inline-flex w-fit items-center gap-1 text-sm font-semibold text-jumbo-black underline underline-offset-2"
         >
           {{ t('store.visitWebsite') }}
-          <Icon
-            name="lucide:external-link"
-            class="size-4"
-            aria-hidden="true"
-          />
+          <Icon name="lucide:external-link" class="size-4" aria-hidden="true" />
           <span class="sr-only">{{ t('common.opensInNewTab') }}</span>
         </a>
       </div>
 
       <div class="mt-8 grid items-stretch gap-8 lg:grid-cols-2">
         <section class="flex flex-col">
-          <h2 class="text-lg font-bold text-jumbo-black">{{ t('store.location') }}</h2>
+          <h2 class="text-lg font-bold text-jumbo-black">
+            {{ t('store.location') }}
+          </h2>
 
           <StoreMap
             v-if="store.coordinates"
@@ -127,18 +123,19 @@ useHead({ title: () => (store.value ? `${store.value.name} | ${t('app.name')}` :
         </section>
 
         <section class="flex flex-col">
-          <h2 class="text-lg font-bold text-jumbo-black">{{ t('store.openingHours') }}</h2>
+          <h2 class="text-lg font-bold text-jumbo-black">
+            {{ t('store.openingHours') }}
+          </h2>
           <div class="mt-3 flex-1 rounded-card border border-jumbo-border p-4">
-            <OpeningHoursTable
-              :opening-hours="store.openingHours"
-              :now="now"
-            />
+            <OpeningHoursTable :opening-hours="store.openingHours" :now="now" />
           </div>
         </section>
       </div>
 
       <section class="mt-8">
-        <h2 class="text-lg font-bold text-jumbo-black">{{ t('store.aboutThisStore') }}</h2>
+        <h2 class="text-lg font-bold text-jumbo-black">
+          {{ t('store.aboutThisStore') }}
+        </h2>
         <div class="mt-3 rounded-card border border-jumbo-border p-4">
           <FacilityList
             :facilities="store.facilities"

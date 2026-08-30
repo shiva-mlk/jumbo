@@ -14,7 +14,9 @@ export function normalize(value: string): string {
 
 // Combines name, city, street, and a spaceless postal code for searching
 function haystack(store: Store): string {
-  const base = normalize([store.name, store.address.city, store.address.street].join(' '))
+  const base = normalize(
+    [store.name, store.address.city, store.address.street].join(' ')
+  )
   const postalCode = normalize(store.address.postalCode).replace(/\s+/g, '')
 
   return `${base} ${postalCode}`
@@ -91,10 +93,15 @@ export function paginate<T>(
   page: number = 1,
   perPage: number = DEFAULT_PAGE_SIZE
 ): Page<T> {
-  const safePerPage = Number.isFinite(perPage) && perPage > 0 ? Math.floor(perPage) : DEFAULT_PAGE_SIZE
+  const safePerPage =
+    Number.isFinite(perPage) && perPage > 0
+      ? Math.floor(perPage)
+      : DEFAULT_PAGE_SIZE
   const total = items.length
   const totalPages = Math.max(1, Math.ceil(total / safePerPage))
-  const safePage = Number.isFinite(page) ? Math.min(Math.max(Math.floor(page), 1), totalPages) : 1
+  const safePage = Number.isFinite(page)
+    ? Math.min(Math.max(Math.floor(page), 1), totalPages)
+    : 1
   const start = (safePage - 1) * safePerPage
 
   return {

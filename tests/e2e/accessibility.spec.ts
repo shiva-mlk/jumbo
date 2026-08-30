@@ -29,10 +29,15 @@ test.describe('Accessibility', () => {
   test('switches language and keeps the page working', async ({ page }) => {
     await gotoHydrated(page, '/')
 
-    await page.getByRole('navigation', { name: 'Change language' }).getByText('NL').click()
+    await page
+      .getByRole('navigation', { name: 'Change language' })
+      .getByText('NL')
+      .click()
 
     await expect(page).toHaveURL(/\/nl/)
     await expect(page.locator('html')).toHaveAttribute('lang', 'nl-NL')
-    await expect(page.getByRole('heading', { name: 'Winkels', level: 1 })).toBeVisible()
+    await expect(
+      page.getByRole('heading', { name: 'Winkels', level: 1 })
+    ).toBeVisible()
   })
 })

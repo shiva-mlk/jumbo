@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /**
  * Jumbo brand tokens. Sourced from jumbo.com's public styling; the yellow is
@@ -14,8 +14,9 @@
   --color-jumbo-green: #128a42;
   --color-jumbo-red: #c40000;
 
-  --font-sans: "Jumbo Sans", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans:
+    'Jumbo Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
 
   --radius-card: 0.5rem;
 }

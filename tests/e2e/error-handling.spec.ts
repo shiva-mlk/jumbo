@@ -6,7 +6,9 @@ test.describe('Error handling', () => {
     const response = await gotoHydrated(page, '/stores/does-not-exist')
 
     expect(response?.status()).toBe(404)
-    await expect(page.getByRole('heading', { name: 'Page not found' })).toBeVisible()
+    await expect(
+      page.getByRole('heading', { name: 'Page not found' })
+    ).toBeVisible()
     await expect(page.getByRole('banner')).toBeVisible()
     await expect(page.getByRole('contentinfo')).toBeVisible()
   })
@@ -15,13 +17,17 @@ test.describe('Error handling', () => {
     const response = await gotoHydrated(page, '/no-such-page')
 
     expect(response?.status()).toBe(404)
-    await expect(page.getByRole('heading', { name: 'Page not found' })).toBeVisible()
+    await expect(
+      page.getByRole('heading', { name: 'Page not found' })
+    ).toBeVisible()
   })
 
   test('translates the error page', async ({ page }) => {
     await gotoHydrated(page, '/nl/stores/does-not-exist')
 
-    await expect(page.getByRole('heading', { name: 'Pagina niet gevonden' })).toBeVisible()
+    await expect(
+      page.getByRole('heading', { name: 'Pagina niet gevonden' })
+    ).toBeVisible()
     await expect(page.locator('html')).toHaveAttribute('lang', 'nl-NL')
   })
 
@@ -31,6 +37,8 @@ test.describe('Error handling', () => {
     await page.getByRole('button', { name: 'Back to all stores' }).click()
 
     await expect(page).toHaveURL(/\/$/)
-    await expect(page.getByRole('heading', { name: 'Stores', level: 1 })).toBeVisible()
+    await expect(
+      page.getByRole('heading', { name: 'Stores', level: 1 })
+    ).toBeVisible()
   })
 })

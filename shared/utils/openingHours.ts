@@ -28,7 +28,8 @@ export function parseTime(value: string | undefined): ParsedTime | null {
 
   if (zone !== 'Z') {
     const sign = zone.startsWith('-') ? -1 : 1
-    offsetMinutes = sign * (Number(zone.slice(1, 3)) * 60 + Number(zone.slice(4, 6)))
+    offsetMinutes =
+      sign * (Number(zone.slice(1, 3)) * 60 + Number(zone.slice(4, 6)))
   }
 
   return { minutes: hours * 60 + mins, offsetMinutes }
@@ -54,7 +55,8 @@ export function getZonedNow(
     hourCycle: 'h23'
   }).formatToParts(now)
 
-  const lookup = (type: string) => parts.find((part) => part.type === type)?.value
+  const lookup = (type: string) =>
+    parts.find((part) => part.type === type)?.value
 
   const weekday = lookup('weekday')?.toLowerCase() as Weekday | undefined
   const hour = Number(lookup('hour'))
@@ -125,7 +127,8 @@ export function getNextOpening(
 
 // Formats minutes into an "HH:MM" string
 export function formatMinutes(minutes: number): string {
-  const normalized = ((minutes % MINUTES_PER_DAY) + MINUTES_PER_DAY) % MINUTES_PER_DAY
+  const normalized =
+    ((minutes % MINUTES_PER_DAY) + MINUTES_PER_DAY) % MINUTES_PER_DAY
   const hours = Math.floor(normalized / 60)
   const mins = normalized % 60
 

@@ -48,7 +48,8 @@ export function useCombobox<T>(options: UseComboboxOptions<T>) {
     isOpen.value = true
 
     const count = items.value.length
-    activeIndex.value = (activeIndex.value + 1 + delta + count + 1) % (count + 1) - 1
+    activeIndex.value =
+      ((activeIndex.value + 1 + delta + count + 1) % (count + 1)) - 1
   }
 
   function onKeydown(event: KeyboardEvent) {
@@ -85,7 +86,11 @@ export function useCombobox<T>(options: UseComboboxOptions<T>) {
   // Clicking anywhere outside dismisses the popup, as the pattern requires.
   onMounted(() => {
     const handler = (event: MouseEvent) => {
-      if (containerRef.value && !containerRef.value.contains(event.target as Node)) close()
+      if (
+        containerRef.value &&
+        !containerRef.value.contains(event.target as Node)
+      )
+        close()
     }
 
     document.addEventListener('click', handler)

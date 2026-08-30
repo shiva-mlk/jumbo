@@ -19,10 +19,7 @@ defineSlots<{
     class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
   >
     <template #default="{ item, index }">
-      <slot
-        :item="item"
-        :index="index"
-      />
+      <slot :item="item" :index="index" />
     </template>
   </BaseList>
 </template>

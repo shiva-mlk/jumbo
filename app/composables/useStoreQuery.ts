@@ -1,5 +1,11 @@
 import { useQuery } from '@tanstack/vue-query'
-import type { Address, Commerce, Coordinates, Facilities, OpeningHours } from '#shared/types/store'
+import type {
+  Address,
+  Commerce,
+  Coordinates,
+  Facilities,
+  OpeningHours
+} from '#shared/types/store'
 
 export interface StoreDetail {
   id: string
@@ -28,13 +34,34 @@ export const STORE_QUERY = /* GraphQL */ `
         lng
       }
       openingHours {
-        monday { opensAt closesAt }
-        tuesday { opensAt closesAt }
-        wednesday { opensAt closesAt }
-        thursday { opensAt closesAt }
-        friday { opensAt closesAt }
-        saturday { opensAt closesAt }
-        sunday { opensAt closesAt }
+        monday {
+          opensAt
+          closesAt
+        }
+        tuesday {
+          opensAt
+          closesAt
+        }
+        wednesday {
+          opensAt
+          closesAt
+        }
+        thursday {
+          opensAt
+          closesAt
+        }
+        friday {
+          opensAt
+          closesAt
+        }
+        saturday {
+          opensAt
+          closesAt
+        }
+        sunday {
+          opensAt
+          closesAt
+        }
       }
       facilities {
         cookingStudio
@@ -53,9 +80,15 @@ export const STORE_QUERY = /* GraphQL */ `
         wifi
       }
       commerce {
-        inStore { available }
-        homeDelivery { available }
-        collection { available }
+        inStore {
+          available
+        }
+        homeDelivery {
+          available
+        }
+        collection {
+          available
+        }
       }
     }
   }
@@ -65,8 +98,8 @@ export function useStoreQuery(id: Ref<string>) {
   return useQuery({
     queryKey: ['store', id],
     queryFn: () =>
-      graphqlRequest<{ store: StoreDetail | null }>(STORE_QUERY, { id: id.value }).then(
-        (data) => data.store
-      )
+      graphqlRequest<{ store: StoreDetail | null }>(STORE_QUERY, {
+        id: id.value
+      }).then((data) => data.store)
   })
 }

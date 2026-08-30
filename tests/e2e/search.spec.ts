@@ -28,7 +28,10 @@ test.describe('Search', () => {
     await expect(input).toBeFocused()
     const activeId = await input.getAttribute('aria-activedescendant')
     expect(activeId).toBeTruthy()
-    await expect(page.locator(`#${activeId}`)).toHaveAttribute('aria-selected', 'true')
+    await expect(page.locator(`#${activeId}`)).toHaveAttribute(
+      'aria-selected',
+      'true'
+    )
 
     await input.press('Enter')
 
@@ -37,7 +40,9 @@ test.describe('Search', () => {
     await expect(page.getByText('16 stores')).toBeVisible()
   })
 
-  test('closes the suggestions with Escape without searching', async ({ page }) => {
+  test('closes the suggestions with Escape without searching', async ({
+    page
+  }) => {
     await gotoHydrated(page, '/')
 
     const input = page.getByRole('combobox', { name: 'Search stores' })
@@ -55,7 +60,9 @@ test.describe('Search', () => {
 
     await page.getByRole('combobox', { name: 'Search stores' }).fill('zzzzzz')
 
-    await expect(page.getByRole('status').filter({ hasText: 'No stores match' })).toBeVisible()
+    await expect(
+      page.getByRole('status').filter({ hasText: 'No stores match' })
+    ).toBeVisible()
     await expect(page.getByRole('article')).toHaveCount(0)
   })
 
@@ -68,10 +75,14 @@ test.describe('Search', () => {
     await expect(page.getByText('806 stores')).toBeVisible()
   })
 
-  test('resets to the first page when a new search starts', async ({ page }) => {
+  test('resets to the first page when a new search starts', async ({
+    page
+  }) => {
     await gotoHydrated(page, '/?page=5')
 
-    await page.getByRole('combobox', { name: 'Search stores' }).fill('eindhoven')
+    await page
+      .getByRole('combobox', { name: 'Search stores' })
+      .fill('eindhoven')
 
     await expect(page).not.toHaveURL(/[?&]page=5/)
     await expect(page.getByText('16 stores')).toBeVisible()

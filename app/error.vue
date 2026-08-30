@@ -35,10 +35,7 @@ useHead({
         {{ isNotFound ? t('error.notFoundBody') : t('error.genericBody') }}
       </p>
 
-      <BaseButton
-        class="mt-6"
-        @click="goHome"
-      >
+      <BaseButton class="mt-6" @click="goHome">
         {{ t('error.backHome') }}
       </BaseButton>
     </div>

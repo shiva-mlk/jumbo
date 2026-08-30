@@ -15,7 +15,11 @@ function emptyHours(): OpeningHours {
 }
 
 function makeStore(
-  overrides: Partial<Store> & { city?: string; street?: string; postalCode?: string } = {}
+  overrides: Partial<Store> & {
+    city?: string
+    street?: string
+    postalCode?: string
+  } = {}
 ): Store {
   const {
     city = 'EINDHOVEN',
@@ -187,7 +191,9 @@ describe('getSuggestions', () => {
   })
 
   it('deduplicates cities shared by several stores', () => {
-    const cities = getSuggestions(STORES, 'eindhoven').filter((s) => s.type === 'city')
+    const cities = getSuggestions(STORES, 'eindhoven').filter(
+      (s) => s.type === 'city'
+    )
 
     expect(cities).toHaveLength(1)
   })
@@ -215,11 +221,18 @@ describe('paginate', () => {
     const page = paginate(items, 1, 10)
 
     expect(page.items).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-    expect(page).toMatchObject({ total: 25, page: 1, perPage: 10, totalPages: 3 })
+    expect(page).toMatchObject({
+      total: 25,
+      page: 1,
+      perPage: 10,
+      totalPages: 3
+    })
   })
 
   it('returns a middle page', () => {
-    expect(paginate(items, 2, 10).items).toEqual([11, 12, 13, 14, 15, 16, 17, 18, 19, 20])
+    expect(paginate(items, 2, 10).items).toEqual([
+      11, 12, 13, 14, 15, 16, 17, 18, 19, 20
+    ])
   })
 
   it('returns a partial last page', () => {
