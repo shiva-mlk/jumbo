@@ -34,25 +34,10 @@ function onPageChange(next: number) {
     <h1 class="text-2xl font-bold text-jumbo-black">{{ t('stores.title') }}</h1>
 
     <!-- Loading -->
-    <div
+    <StoreGridSkeleton
       v-if="isPending"
       class="mt-6"
-    >
-      <p
-        class="sr-only"
-        role="status"
-      >
-        {{ t('stores.loading') }}
-      </p>
-      <ul class="grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
-        <li
-          v-for="index in 12"
-          :key="index"
-        >
-          <StoreCardSkeleton />
-        </li>
-      </ul>
-    </div>
+    />
 
     <!-- Error -->
     <ErrorState
@@ -81,8 +66,8 @@ function onPageChange(next: number) {
         {{ t('stores.count', data.total) }}
       </p>
 
-      <ul
-        class="mt-4 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3"
+      <StoreGrid
+        class="mt-4"
         :class="{ 'opacity-60': isPlaceholderData }"
       >
         <li
@@ -94,7 +79,7 @@ function onPageChange(next: number) {
             :now="now"
           />
         </li>
-      </ul>
+      </StoreGrid>
 
       <PaginationControls
         class="mt-8"

@@ -19,6 +19,9 @@ export default defineNuxtConfig({
     mode: 'svg',
     serverBundle: { collections: ['lucide'] }
   },
+  components: [
+    { path: '~/components', pathPrefix: false }
+  ],
   css: ['~/assets/css/main.css'],
   vite: {
     plugins: [tailwindcss()]
