@@ -8,7 +8,7 @@ const props = defineProps<{
 
 const { t } = useI18n()
 
-const FACILITY_ICONS: Record<string, string> = {
+const FACILITY_ICONS: Partial<Record<keyof Facilities, string>> = {
   cookingStudio: 'lucide:chef-hat',
   dryCleaning: 'lucide:shirt',
   flowers: 'lucide:flower-2',
@@ -23,8 +23,8 @@ const FACILITY_ICONS: Record<string, string> = {
 }
 
 const available = computed(() =>
-  Object.keys(FACILITY_ICONS)
-    .filter((key) => props.facilities[key as keyof Facilities] === true)
+  (Object.keys(FACILITY_ICONS) as (keyof Facilities)[])
+    .filter((key) => props.facilities[key] === true)
     .map((key) => ({ key, icon: FACILITY_ICONS[key]!, label: t(`facilities.${key}`) }))
 )
 

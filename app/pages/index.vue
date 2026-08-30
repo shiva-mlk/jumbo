@@ -71,7 +71,7 @@ function onPageChange(next: number) {
 
     <!-- Empty -->
     <EmptyState
-      v-else-if="data && data.total == 0"
+      v-else-if="data && data.total === 0"
       class="mt-6"
       :message="query ? t('stores.emptyForQuery', { query }) : t('stores.empty')"
     />
