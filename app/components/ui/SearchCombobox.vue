@@ -1,14 +1,7 @@
 <script setup lang="ts">
-// Implements the WAI-ARIA combobox pattern (listbox popup). The important
-// pieces are: role="combobox" on the input, aria-expanded reflecting the popup,
-// aria-controls pointing at the listbox, and aria-activedescendant naming the
-// visually highlighted option while DOM focus stays in the input.
-//
-// Vue APIs are imported explicitly so the component can be mounted under plain
-// Vitest, which has no Nuxt auto-import layer. useI18n and useId stay as
-// auto-imports and are stubbed in the test.
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, toRef } from 'vue'
 import type { Suggestion } from '~/composables/useSuggestionsQuery'
+import { useCombobox } from '~/composables/useCombobox'
 
 const props = withDefaults(
   defineProps<{
@@ -29,81 +22,32 @@ const { t } = useI18n()
 const inputId = useId()
 const listboxId = useId()
 
-const isOpen = ref(false)
-/** -1 means "nothing highlighted", i.e. focus is conceptually on the input. */
-const activeIndex = ref(-1)
-const containerRef = ref<HTMLElement | null>(null)
+const {
+  containerRef,
+  isExpanded,
+  activeIndex,
+  open,
+  close,
+  reset,
+  highlight,
+  select,
+  onKeydown
+} = useCombobox<Suggestion>({
+  items: toRef(props, 'suggestions'),
+  onSelect: (suggestion) => {
+    emit('update:modelValue', suggestion.value)
+    emit('submit', suggestion.value)
+  },
+  onSubmit: () => emit('submit', props.modelValue)
+})
 
-const hasItems = computed(() => props.suggestions.length > 0)
-const isExpanded = computed(() => isOpen.value && hasItems.value)
 const activeId = computed(() =>
   activeIndex.value >= 0 ? `${listboxId}-option-${activeIndex.value}` : undefined
 )
 
-function open() {
-  if (hasItems.value) isOpen.value = true
-}
-
-function close() {
-  isOpen.value = false
-  activeIndex.value = -1
-}
-
 function onInput(event: Event) {
   emit('update:modelValue', (event.target as HTMLInputElement).value)
-  activeIndex.value = -1
-  isOpen.value = true
-}
-
-function select(suggestion: Suggestion) {
-  emit('update:modelValue', suggestion.value)
-  emit('submit', suggestion.value)
-  close()
-}
-
-function move(delta: number) {
-  if (!hasItems.value) return
-
-  isOpen.value = true
-
-  // There are suggestions.length + 1 states: one per option plus "nothing
-  // highlighted" (-1). Shifting by one maps them onto 0..length so the modulo
-  // wraps cleanly, which is what lets ArrowUp from the input reach the last
-  // option and ArrowDown off the end return to the input.
-  const count = props.suggestions.length
-  activeIndex.value = (activeIndex.value + 1 + delta + count + 1) % (count + 1) - 1
-}
-
-function onKeydown(event: KeyboardEvent) {
-  switch (event.key) {
-    case 'ArrowDown':
-      event.preventDefault()
-      move(1)
-      break
-    case 'ArrowUp':
-      event.preventDefault()
-      move(-1)
-      break
-    case 'Enter': {
-      const active = props.suggestions[activeIndex.value]
-      if (isOpen.value && active) {
-        event.preventDefault()
-        select(active)
-      } else {
-        emit('submit', props.modelValue)
-        close()
-      }
-      break
-    }
-    case 'Escape':
-      event.preventDefault()
-      close()
-      break
-    case 'Tab':
-      // Not prevented: focus should still move on.
-      close()
-      break
-  }
+  reset()
 }
 
 function clear() {
@@ -111,16 +55,6 @@ function clear() {
   emit('submit', '')
   close()
 }
-
-// Clicking anywhere outside dismisses the popup, as the pattern requires.
-onMounted(() => {
-  const handler = (event: MouseEvent) => {
-    if (containerRef.value && !containerRef.value.contains(event.target as Node)) close()
-  }
-
-  document.addEventListener('click', handler)
-  onUnmounted(() => document.removeEventListener('click', handler))
-})
 
 function optionClass(_suggestion: Suggestion, index: number) {
   return [
@@ -135,17 +69,9 @@ function optionAttrs(suggestion: Suggestion, index: number) {
     role: 'option',
     'aria-selected': index === activeIndex.value,
     onClick: () => select(suggestion),
-    onMousemove: () => (activeIndex.value = index)
+    onMousemove: () => highlight(index)
   }
 }
-
-// A highlight into a list that just emptied would point at nothing.
-watch(
-  () => props.suggestions,
-  (list) => {
-    if (list.length === 0) activeIndex.value = -1
-  }
-)
 </script>
 
 <template>
