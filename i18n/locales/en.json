@@ -20,10 +20,25 @@
   },
   "common": {
     "retry": "Try again",
-    "opensInNewTab": "(opens in a new tab)"
+    "opensInNewTab": "(opens in a new tab)",
+    "available": "Available",
+    "unavailable": "Not available"
   },
   "store": {
-    "visitWebsite": "Visit website"
+    "visitWebsite": "Visit website",
+    "backToOverview": "Back to all stores",
+    "loading": "Loading store",
+    "notFound": "Store not found",
+    "location": "Location",
+    "mapLabel": "Map showing the location of {name}",
+    "noLocation": "No location is available for this store.",
+    "openingHours": "Opening hours",
+    "today": "today",
+    "closed": "Closed",
+    "aboutThisStore": "About this store",
+    "facilities": "Facilities",
+    "noFacilities": "No facilities listed for this store.",
+    "services": "Shopping options"
   },
   "status": {
     "open": "Open",
@@ -48,5 +63,36 @@
     "resultsAvailable": "No suggestions | 1 suggestion available | {count} suggestions available",
     "typeCity": "city",
     "typeStore": "store"
+  },
+  "facilities": {
+    "cookingStudio": "Cooking studio",
+    "dryCleaning": "Dry cleaning",
+    "flowers": "Florist",
+    "kitchen": "Kitchen",
+    "liquorService": "Liquor service",
+    "pharmacy": "Pharmacy",
+    "photoService": "Photo service",
+    "postOffice": "Post office",
+    "selfCheckout": "Self-checkout",
+    "selfScan": "Self-scan",
+    "wifi": "Wi-Fi",
+    "parking": "Parking"
+  },
+  "parking": {
+    "FREE": "Free parking",
+    "PAID": "Paid parking",
+    "NONE": "No parking"
+  },
+  "commerce": {
+    "inStore": "Shop in store",
+    "homeDelivery": "Home delivery",
+    "collection": "Click & collect"
+  },
+  "error": {
+    "notFoundTitle": "Page not found",
+    "notFoundBody": "The page or store you are looking for does not exist, or may have been removed.",
+    "genericTitle": "Something went wrong",
+    "genericBody": "An unexpected error occurred. Please try again.",
+    "backHome": "Back to all stores"
   }
 }

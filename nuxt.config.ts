@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/eslint', '@nuxtjs/i18n', '@nuxt/icon'],
+  modules: ['@nuxt/eslint', '@nuxtjs/i18n', '@nuxt/icon', '@nuxtjs/leaflet'],
   i18n: {
     baseUrl: process.env.NUXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
     defaultLocale: 'en',

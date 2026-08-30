@@ -7,22 +7,13 @@ const props = defineProps<{
   now: Date
 }>()
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
 
 const isOpen = computed(() => isStoreOpen(props.openingHours, props.now))
 const closingTime = computed(() => getTodaysClosingTime(props.openingHours, props.now))
 const nextOpening = computed(() => getNextOpening(props.openingHours, props.now))
 
-function weekdayName(weekday: string): string {
-  const reference = new Date(Date.UTC(2024, 0, 1)) // A Monday.
-  const index = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
-    .indexOf(weekday)
-
-  reference.setUTCDate(reference.getUTCDate() + Math.max(index, 0))
-
-  return new Intl.DateTimeFormat(locale.value, { weekday: 'long', timeZone: 'UTC' })
-    .format(reference)
-}
+const { nameOf } = useWeekdayNames()
 
 const label = computed(() => {
   if (isOpen.value) {
@@ -37,7 +28,7 @@ const label = computed(() => {
   if (next.dayOffset === 0) return t('status.closedOpensToday', { time: next.time })
   if (next.dayOffset === 1) return t('status.closedOpensTomorrow', { time: next.time })
 
-  return t('status.closedOpensOn', { day: weekdayName(next.weekday), time: next.time })
+  return t('status.closedOpensOn', { day: nameOf(next.weekday), time: next.time })
 })
 </script>
 

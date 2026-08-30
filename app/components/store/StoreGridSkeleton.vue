@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const props = withDefaults(defineProps<{ count?: number }>(), { count: 12 })
+import { DEFAULT_PAGE_SIZE } from '#shared/utils/filterStores'
+
+const props = withDefaults(defineProps<{ count?: number }>(), { count: DEFAULT_PAGE_SIZE })
 
 const { t } = useI18n()
 

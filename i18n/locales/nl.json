@@ -20,10 +20,25 @@
   },
   "common": {
     "retry": "Opnieuw proberen",
-    "opensInNewTab": "(opent in een nieuw tabblad)"
+    "opensInNewTab": "(opent in een nieuw tabblad)",
+    "available": "Beschikbaar",
+    "unavailable": "Niet beschikbaar"
   },
   "store": {
-    "visitWebsite": "Bekijk website"
+    "visitWebsite": "Bekijk website",
+    "backToOverview": "Terug naar alle winkels",
+    "loading": "Winkel laden",
+    "notFound": "Winkel niet gevonden",
+    "location": "Locatie",
+    "mapLabel": "Kaart met de locatie van {name}",
+    "noLocation": "Voor deze winkel is geen locatie beschikbaar.",
+    "openingHours": "Openingstijden",
+    "today": "vandaag",
+    "closed": "Gesloten",
+    "aboutThisStore": "Over deze winkel",
+    "facilities": "Voorzieningen",
+    "noFacilities": "Voor deze winkel zijn geen voorzieningen bekend.",
+    "services": "Winkelopties"
   },
   "status": {
     "open": "Open",
@@ -48,5 +63,36 @@
     "resultsAvailable": "Geen suggesties | 1 suggestie beschikbaar | {count} suggesties beschikbaar",
     "typeCity": "plaats",
     "typeStore": "winkel"
+  },
+  "facilities": {
+    "cookingStudio": "Kookstudio",
+    "dryCleaning": "Stomerij",
+    "flowers": "Bloemist",
+    "kitchen": "Keuken",
+    "liquorService": "Slijterij",
+    "pharmacy": "Apotheek",
+    "photoService": "Fotoservice",
+    "postOffice": "Postkantoor",
+    "selfCheckout": "Zelfscankassa",
+    "selfScan": "Zelfscan",
+    "wifi": "Wifi",
+    "parking": "Parkeren"
+  },
+  "parking": {
+    "FREE": "Gratis parkeren",
+    "PAID": "Betaald parkeren",
+    "NONE": "Geen parkeergelegenheid"
+  },
+  "commerce": {
+    "inStore": "Winkelen in de winkel",
+    "homeDelivery": "Thuisbezorgd",
+    "collection": "Ophalen"
+  },
+  "error": {
+    "notFoundTitle": "Pagina niet gevonden",
+    "notFoundBody": "De pagina of winkel die je zoekt bestaat niet, of is mogelijk verwijderd.",
+    "genericTitle": "Er ging iets mis",
+    "genericBody": "Er is een onverwachte fout opgetreden. Probeer het opnieuw.",
+    "backHome": "Terug naar alle winkels"
   }
 }
