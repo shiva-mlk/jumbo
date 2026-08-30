@@ -81,7 +81,8 @@
   "parking": {
     "FREE": "Gratis parkeren",
     "PAID": "Betaald parkeren",
-    "NONE": "Geen parkeergelegenheid"
+    "ZONE": "Betaalde parkeerzone",
+    "NO_INFO": "Geen parkeerinformatie beschikbaar"
   },
   "commerce": {
     "inStore": "Winkelen in de winkel",

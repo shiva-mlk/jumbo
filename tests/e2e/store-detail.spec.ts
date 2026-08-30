@@ -55,6 +55,30 @@ test.describe('Store detail', () => {
     await expect(page.locator('.leaflet-container')).toHaveCount(0)
   })
 
+  test('distinguishes today by weight, not colour alone', async ({ page }) => {
+    await gotoHydrated(page, '/stores/3126')
+
+    const weights = await page.locator('table tr th').evaluateAll((cells) =>
+      cells.map((cell) => getComputedStyle(cell).fontWeight)
+    )
+
+    expect(weights.filter((weight) => weight === '700')).toHaveLength(1)
+    expect(weights.filter((weight) => weight !== '700')).toHaveLength(6)
+  })
+
+  test('translates every parking value in the dataset', async ({ page }) => {
+    for (const [id, expected] of [
+      ['5146', 'No parking information available'],
+      ['5127', 'Paid parking zone'],
+      ['3126', 'Free parking']
+    ] as const) {
+      await gotoHydrated(page, `/stores/${id}`)
+
+      await expect(page.getByText(expected)).toBeVisible()
+      await expect(page.getByText(/^(NO_INFO|ZONE|FREE|PAID)$/)).toHaveCount(0)
+    }
+  })
+
   test('returns to the overview', async ({ page }) => {
     await gotoHydrated(page, '/stores/3126')
 

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Store } from '#shared/types/store'
+import type { StoreListItem } from '~/composables/useStoresQuery'
 
 defineProps<{
-  store: Store
+  store: StoreListItem
   now: Date
 }>()
 

@@ -81,7 +81,8 @@
   "parking": {
     "FREE": "Free parking",
     "PAID": "Paid parking",
-    "NONE": "No parking"
+    "ZONE": "Paid parking zone",
+    "NO_INFO": "No parking information available"
   },
   "commerce": {
     "inStore": "Shop in store",

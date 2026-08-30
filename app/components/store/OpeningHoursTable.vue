@@ -54,7 +54,8 @@ const rows = computed(() =>
       >
         <th
           scope="row"
-          class="py-2 text-left font-inherit"
+          class="py-2 text-left"
+          :class="row.isToday ? 'font-bold' : 'font-normal'"
         >
           {{ row.label }}
           <span

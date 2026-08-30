@@ -1,8 +1,16 @@
 import { keepPreviousData, useQuery } from '@tanstack/vue-query'
-import type { Store } from '#shared/types/store'
+import type { Address, OpeningHours } from '#shared/types/store'
+
+export interface StoreListItem {
+  id: string
+  name: string
+  websiteUrl?: string
+  address: Pick<Address, 'formatted' | 'postalCode' | 'city'>
+  openingHours: OpeningHours
+}
 
 export interface StorePage {
-  items: Store[]
+  items: StoreListItem[]
   total: number
   page: number
   perPage: number
@@ -21,15 +29,9 @@ const STORES_QUERY = /* GraphQL */ `
         name
         websiteUrl
         address {
-          street
-          houseNumber
           postalCode
           city
           formatted
-        }
-        coordinates {
-          lat
-          lng
         }
         openingHours {
           monday { opensAt closesAt }

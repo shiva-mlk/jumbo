@@ -1,20 +1,26 @@
 import { useQuery } from '@tanstack/vue-query'
-import type { Store } from '#shared/types/store'
+import type { Address, Commerce, Coordinates, Facilities, OpeningHours } from '#shared/types/store'
+
+export interface StoreDetail {
+  id: string
+  name: string
+  websiteUrl?: string
+  address: Pick<Address, 'formatted' | 'postalCode' | 'city'>
+  coordinates: Coordinates | null
+  openingHours: OpeningHours
+  facilities: Facilities
+  commerce: Commerce
+}
 
 const STORE_QUERY = /* GraphQL */ `
   query Store($id: ID!) {
     store(id: $id) {
       id
       name
-      complexNumber
       websiteUrl
       address {
-        street
-        houseNumber
         postalCode
         city
-        state
-        countryCode
         formatted
       }
       coordinates {
@@ -59,7 +65,7 @@ export function useStoreQuery(id: Ref<string>) {
   return useQuery({
     queryKey: ['store', id],
     queryFn: () =>
-      graphqlRequest<{ store: Store | null }>(STORE_QUERY, { id: id.value }).then(
+      graphqlRequest<{ store: StoreDetail | null }>(STORE_QUERY, { id: id.value }).then(
         (data) => data.store
       )
   })
