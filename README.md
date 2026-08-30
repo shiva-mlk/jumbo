@@ -34,7 +34,7 @@ on Node 22.
 | `npm run typecheck` | `vue-tsc` against the strict TypeScript config |
 | `npm run test` | 93 unit tests (Vitest) |
 | `npm run test:watch` | Unit tests in watch mode |
-| `npm run test:e2e` | 26 end-to-end tests (Playwright) |
+| `npm run test:e2e` | 28 end-to-end tests (Playwright) |
 
 `npm run test:e2e` builds the app and starts a preview server itself, so the
 end-to-end suite runs against a production build rather than the dev server.
@@ -117,7 +117,7 @@ applications. The language switcher is explicit instead.
 | **Should** — Parsing and filtering unit tested | 73 tests across `parseStores`, `openingHours`, `filterStores` |
 | **Could** — Internationalisation | `@nuxtjs/i18n`, English and Dutch |
 | **Could** — Error and loading states | `ErrorState.vue`, `EmptyState.vue`, `StoreGridSkeleton.vue`, `app/error.vue` |
-| **Could** — End-to-end tests | 26 Playwright tests in `tests/e2e/` |
+| **Could** — End-to-end tests | 28 Playwright tests in `tests/e2e/` |
 
 ### Bonus challenges
 
@@ -147,7 +147,7 @@ applications. The language switcher is explicit instead.
 | `filterStores.spec.ts` | 30 | Search, diacritics, suggestions, pagination |
 | `useDebouncedRef.spec.ts` | 8 | Debounce timing and cleanup |
 | `SearchCombobox.spec.ts` | 12 | Combobox keyboard behaviour and ARIA |
-| `tests/e2e/` | 26 | Overview, search, detail page, errors, accessibility |
+| `tests/e2e/` | 28 | Overview, search, detail page, errors, accessibility |
 
 ## Known limitations
 
