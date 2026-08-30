@@ -1,0 +1,16 @@
+{
+  "app": {
+    "name": "Jumbo",
+    "section": "Winkels",
+    "skipToContent": "Ga naar de inhoud",
+    "footer": "Winkelgegevens uit de meegeleverde dataset. Gebouwd als opdracht voor de Jumbo Tech Campus."
+  },
+  "locale": {
+    "switch": "Taal wijzigen",
+    "current": "Huidige taal"
+  },
+  "stores": {
+    "title": "Winkels",
+    "placeholder": "Het winkeloverzicht komt hier."
+  }
+}

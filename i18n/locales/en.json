@@ -1,0 +1,16 @@
+{
+  "app": {
+    "name": "Jumbo",
+    "section": "Stores",
+    "skipToContent": "Skip to content",
+    "footer": "Store data from the provided dataset. Built as an assignment for the Jumbo Tech Campus."
+  },
+  "locale": {
+    "switch": "Change language",
+    "current": "Current language"
+  },
+  "stores": {
+    "title": "Stores",
+    "placeholder": "The store overview goes here."
+  }
+}
