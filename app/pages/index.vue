@@ -13,7 +13,19 @@ const page = computed({
   }
 })
 
-const query = ref('')
+const searchInput = ref((route.query.q as string) ?? '')
+const query = useDebouncedRef(searchInput, 500)
+
+const { data: suggestions, isFetching: isLoadingSuggestions } = useSuggestionsQuery(query)
+
+watch(query, (value) => {
+  router.replace({ query: { ...route.query, q: value || undefined, page: undefined } })
+})
+
+function onSearchSubmit(value: string) {
+  searchInput.value = value
+  router.replace({ query: { ...route.query, q: value || undefined, page: undefined } })
+}
 const now = useNow()
 
 const { data, isPending, isError, error, refetch, isPlaceholderData, suspense } =
@@ -33,6 +45,14 @@ function onPageChange(next: number) {
   <div>
     <h1 class="text-2xl font-bold text-jumbo-black">{{ t('stores.title') }}</h1>
 
+    <SearchCombobox
+      v-model="searchInput"
+      class="mt-4 max-w-xl"
+      :suggestions="suggestions ?? []"
+      :loading="isLoadingSuggestions"
+      @submit="onSearchSubmit"
+    />
+
     <!-- Loading -->
     <StoreGridSkeleton
       v-if="isPending"
@@ -51,7 +71,7 @@ function onPageChange(next: number) {
     <EmptyState
       v-else-if="data && data.total == 0"
       class="mt-6"
-      :message="t('stores.empty')"
+      :message="query ? t('stores.emptyForQuery', { query }) : t('stores.empty')"
     />
 
     <!-- Results -->

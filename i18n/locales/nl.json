@@ -15,7 +15,8 @@
     "count": "Geen winkels gevonden | 1 winkel | {count} winkels",
     "empty": "Geen winkels gevonden voor je zoekopdracht.",
     "errorTitle": "Er ging iets mis",
-    "errorBody": "De winkels konden niet worden geladen."
+    "errorBody": "De winkels konden niet worden geladen.",
+    "emptyForQuery": "Geen winkels gevonden voor “{query}”."
   },
   "common": {
     "retry": "Opnieuw proberen",
@@ -37,5 +38,15 @@
     "previous": "Vorige pagina",
     "next": "Volgende pagina",
     "goToPage": "Ga naar pagina {page}"
+  },
+  "search": {
+    "label": "Winkels zoeken",
+    "placeholder": "Plaats, winkelnaam of postcode",
+    "clear": "Zoekopdracht wissen",
+    "suggestions": "Suggesties",
+    "loading": "Suggesties laden",
+    "resultsAvailable": "Geen suggesties | 1 suggestie beschikbaar | {count} suggesties beschikbaar",
+    "typeCity": "plaats",
+    "typeStore": "winkel"
   }
 }

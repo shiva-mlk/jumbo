@@ -15,7 +15,8 @@
     "count": "No stores found | 1 store | {count} stores",
     "empty": "No stores match your search.",
     "errorTitle": "Something went wrong",
-    "errorBody": "The stores could not be loaded."
+    "errorBody": "The stores could not be loaded.",
+    "emptyForQuery": "No stores match “{query}”."
   },
   "common": {
     "retry": "Try again",
@@ -37,5 +38,15 @@
     "previous": "Previous page",
     "next": "Next page",
     "goToPage": "Go to page {page}"
+  },
+  "search": {
+    "label": "Search stores",
+    "placeholder": "City, store name or postcode",
+    "clear": "Clear search",
+    "suggestions": "Suggestions",
+    "loading": "Loading suggestions",
+    "resultsAvailable": "No suggestions | 1 suggestion available | {count} suggestions available",
+    "typeCity": "city",
+    "typeStore": "store"
   }
 }
